@@ -28,6 +28,39 @@ The project explores a modular approach to building data intelligence platforms 
 
 ---
 
+                          MIEAI NEXUS
+                  Experimental Data Systems
+                         mieai.my
+                             │
+                             │
+                     PAMI CORE INTELLIGENCE
+                             │
+        ┌────────────────────┼────────────────────┐
+        │                    │                    │
+   NeuroVista           Quantum Core          DataFusion
+ Analytics Engine     Statistical Engine     Data Pipeline
+        │                    │                    │
+        │                    │                    │
+   Data Exploration     Statistical Models     Data Processing
+   Insight Discovery    Analytical Computing   Report Generation
+   Visualization Prep   Advanced Functions     Dashboard Output
+        │                    │                    │
+        └─────────────── Core Data Systems ──────┘
+                             │
+                             │
+                        Utilities Layer
+                             │
+               ┌─────────────┴─────────────┐
+               │                           │
+            QR Nexus                    VoidClean
+        QR Code Generator           Data Cleaning Engine
+               │                           │
+        Shareable Links             Data Preparation
+        Instant QR Output           Dataset Normalization
+                                     Duplicate Removal
+
+---
+
 # System Architecture
 
 ```

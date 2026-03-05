@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MIEAI NEXUS — Powered by PAMI</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: radial-gradient(circle at top, #0f0f1a, #050509);
+    color: #fff;
+    overflow-x: hidden;
+}
+
+/* Subtle Animated Background */
+body::before {
+    content: "";
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(#00f0ff22 1px, transparent 1px);
+    background-size: 40px 40px;
+    animation: moveBg 40s linear infinite;
+    z-index: -1;
+}
+
+@keyframes moveBg {
+    from { transform: translate(0,0); }
+    to { transform: translate(-200px,-200px); }
+}
+
+.hero {
+    text-align: center;
+    padding: 100px 20px 60px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    letter-spacing: 3px;
+}
+
+.hero span {
+    color: #00f0ff;
+}
+
+.hero p {
+    margin-top: 20px;
+    opacity: 0.8;
+}
+
+.modules {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 60px 10%;
+}
+
+.card {
+    padding: 40px 20px;
+    border-radius: 20px;
+    text-align: center;
+    transition: 0.3s ease;
+    border: 1px solid #ffffff22;
+    backdrop-filter: blur(8px);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card h2 {
+    margin-bottom: 15px;
+}
+
+.card p {
+    opacity: 0.7;
+    margin-bottom: 25px;
+}
+
+.launch-btn {
+    padding: 12px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    display: inline-block;
+    transition: 0.3s ease;
+}
+
+/* Module Colors */
+.neuro { box-shadow: 0 0 20px #00f0ff55; }
+.neuro .launch-btn { background: #00f0ff; }
+
+.quantum { box-shadow: 0 0 20px #ff7a00aa; }
+.quantum .launch-btn { background: #ff7a00; }
+
+.datafusion { box-shadow: 0 0 20px #a855f755; }
+.datafusion .launch-btn { background: #a855f7; }
+
+.qr { box-shadow: 0 0 20px #ff007755; }
+.qr .launch-btn { background: #ff0077; }
+
+.void { box-shadow: 0 0 20px #00ffaa55; }
+.void .launch-btn { background: #00ffaa; color: #000; }
+
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    opacity: 0.5;
+    font-size: 0.9rem;
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+    <h1>MIEAI <span>NEXUS</span></h1>
+    <p>Powered by PAMI — Predictive Analytics & Machine Intelligence</p>
+    <p>ACCESS STATUS: UNRESTRICTED</p>
+</div>
+
+<div class="modules">
+
+    <!-- ============================= -->
+    <!-- NEUROVISTA MODULE -->
+    <!-- PASTE GOOGLE APPS SCRIPT URL BELOW -->
+    <!-- ============================= -->
+    <div class="card neuro">
+        <h2>NeuroVista</h2>
+        <p>AI Business Intelligence System</p>
+        <a href="PASTE_NEUROVISTA_URL_HERE" target="_blank" class="launch-btn">Launch Module</a>
+    </div>
+
+    <!-- ============================= -->
+    <!-- QUANTUM CORE MODULE -->
+    <!-- PASTE GOOGLE APPS SCRIPT URL BELOW -->
+    <!-- ============================= -->
+    <div class="card quantum">
+        <h2>Quantum Core</h2>
+        <p>Enterprise Statistical Engine</p>
+        <a href="PASTE_QUANTUM_CORE_URL_HERE" target="_blank" class="launch-btn">Launch Module</a>
+    </div>
+
+    <!-- ============================= -->
+    <!-- DATAFUSION MODULE -->
+    <!-- PASTE GOOGLE APPS SCRIPT URL BELOW -->
+    <!-- ============================= -->
+    <div class="card datafusion">
+        <h2>DataFusion</h2>
+        <p>Automated Report & Dashboard Generator</p>
+        <a href="PASTE_DATAFUSION_URL_HERE" target="_blank" class="launch-btn">Launch Module</a>
+    </div>
+
+    <!-- ============================= -->
+    <!-- QR NEXUS MODULE -->
+    <!-- PASTE GOOGLE APPS SCRIPT URL BELOW -->
+    <!-- ============================= -->
+    <div class="card qr">
+        <h2>QR Nexus</h2>
+        <p>Dynamic QR Utility System</p>
+        <a href="PASTE_QR_URL_HERE" target="_blank" class="launch-btn">Launch Module</a>
+    </div>
+
+    <!-- ============================= -->
+    <!-- VOIDCLEAN MODULE -->
+    <!-- PASTE GOOGLE APPS SCRIPT URL BELOW -->
+    <!-- ============================= -->
+    <div class="card void">
+        <h2>VoidClean</h2>
+        <p>Data Refinement Engine</p>
+        <a href="PASTE_VOIDCLEAN_URL_HERE" target="_blank" class="launch-btn">Launch Module</a>
+    </div>
+
+</div>
+
+<footer>
+PAMI Core Intelligence • MIEAI Nexus • 2026
+</footer>
+
+</body>
+</html>

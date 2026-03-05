@@ -3,186 +3,304 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MIEAI NEXUS — Powered by PAMI</title>
+<title>MIEAI Nexus | PAMI Core Intelligence</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', sans-serif;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: 'Segoe UI', sans-serif;
 }
 
-body {
-    background: radial-gradient(circle at top, #0f0f1a, #050509);
-    color: #fff;
-    overflow-x: hidden;
+body{
+background:#070b14;
+color:white;
+overflow-x:hidden;
 }
 
-/* Subtle Animated Background */
-body::before {
-    content: "";
-    position: fixed;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(#00f0ff22 1px, transparent 1px);
-    background-size: 40px 40px;
-    animation: moveBg 40s linear infinite;
-    z-index: -1;
+/* ================= BOOT SCREEN ================= */
+
+#bootScreen{
+position:fixed;
+inset:0;
+background:#04060d;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+z-index:9999;
 }
 
-@keyframes moveBg {
-    from { transform: translate(0,0); }
-    to { transform: translate(-200px,-200px); }
+.boot-text{
+font-size:14px;
+opacity:0.7;
+letter-spacing:1px;
+margin-bottom:20px;
 }
 
-.hero {
-    text-align: center;
-    padding: 100px 20px 60px;
+.progress-bar{
+width:240px;
+height:3px;
+background:#111;
+overflow:hidden;
+border-radius:3px;
 }
 
-.hero h1 {
-    font-size: 3rem;
-    letter-spacing: 3px;
+.progress{
+height:100%;
+width:0%;
+background:linear-gradient(90deg,#00f0ff,#7a5cff);
+transition:width 3s linear;
 }
 
-.hero span {
-    color: #00f0ff;
+.hidden{
+opacity:0;
+visibility:hidden;
+transition:1s ease;
 }
 
-.hero p {
-    margin-top: 20px;
-    opacity: 0.8;
+/* ================= HERO ================= */
+
+.hero{
+text-align:center;
+padding-top:120px;
+opacity:0;
+transform:translateY(20px);
+transition:1s ease;
 }
 
-.modules {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    padding: 60px 10%;
+.hero.show{
+opacity:1;
+transform:translateY(0);
 }
 
-.card {
-    padding: 40px 20px;
-    border-radius: 20px;
-    text-align: center;
-    transition: 0.3s ease;
-    border: 1px solid #ffffff22;
-    backdrop-filter: blur(8px);
+.hero h1{
+font-size:48px;
+letter-spacing:2px;
 }
 
-.card:hover {
-    transform: translateY(-10px);
+.hero span{
+color:#00f0ff;
 }
 
-.card h2 {
-    margin-bottom: 15px;
+.status{
+margin-top:20px;
+font-size:14px;
+opacity:0.6;
+line-height:24px;
 }
 
-.card p {
-    opacity: 0.7;
-    margin-bottom: 25px;
+/* ================= GRID BACKGROUND ================= */
+
+body::before{
+content:"";
+position:fixed;
+inset:0;
+background-image:
+linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+background-size:40px 40px;
+z-index:-2;
 }
 
-.launch-btn {
-    padding: 12px 25px;
-    border-radius: 30px;
-    text-decoration: none;
-    color: #fff;
-    font-weight: bold;
-    display: inline-block;
-    transition: 0.3s ease;
+/* ================= MODULES ================= */
+
+.modules{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:30px;
+margin:100px auto;
+max-width:1300px;
+opacity:0;
+transform:translateY(40px);
+transition:1s ease;
 }
 
-/* Module Colors */
-.neuro { box-shadow: 0 0 20px #00f0ff55; }
-.neuro .launch-btn { background: #00f0ff; }
-
-.quantum { box-shadow: 0 0 20px #ff7a00aa; }
-.quantum .launch-btn { background: #ff7a00; }
-
-.datafusion { box-shadow: 0 0 20px #a855f755; }
-.datafusion .launch-btn { background: #a855f7; }
-
-.qr { box-shadow: 0 0 20px #ff007755; }
-.qr .launch-btn { background: #ff0077; }
-
-.void { box-shadow: 0 0 20px #00ffaa55; }
-.void .launch-btn { background: #00ffaa; color: #000; }
-
-footer {
-    text-align: center;
-    padding: 40px 20px;
-    opacity: 0.5;
-    font-size: 0.9rem;
+.modules.show{
+opacity:1;
+transform:translateY(0);
 }
+
+.card{
+width:240px;
+height:220px;
+background:#0b0f1c;
+border-radius:20px;
+padding:25px;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+text-align:center;
+transition:0.4s ease;
+position:relative;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card h3{
+font-size:20px;
+}
+
+.card p{
+font-size:13px;
+opacity:0.6;
+margin:10px 0;
+}
+
+.btn{
+padding:10px 20px;
+border:none;
+border-radius:30px;
+cursor:pointer;
+font-weight:bold;
+transition:0.3s ease;
+}
+
+.btn:hover{
+transform:scale(1.05);
+}
+
+/* Individual Colors */
+
+.neuro { box-shadow:0 0 20px #00f0ff33; }
+.neuro .btn{ background:#00f0ff; }
+
+.quantum { box-shadow:0 0 20px #ff8c0033; }
+.quantum .btn{ background:#ff8c00; }
+
+.datafusion { box-shadow:0 0 20px #a855f733; }
+.datafusion .btn{ background:#a855f7; }
+
+.qr { box-shadow:0 0 20px #ff007733; }
+.qr .btn{ background:#ff0077; }
+
+.void { box-shadow:0 0 20px #00ff9d33; }
+.void .btn{ background:#00ff9d; }
+
+/* ================= FOOTER ================= */
+
+footer{
+text-align:center;
+opacity:0.5;
+font-size:13px;
+margin-bottom:40px;
+}
+
 </style>
 </head>
 <body>
 
-<div class="hero">
-    <h1>MIEAI <span>NEXUS</span></h1>
-    <p>Powered by PAMI — Predictive Analytics & Machine Intelligence</p>
-    <p>ACCESS STATUS: UNRESTRICTED</p>
+<!-- BOOT SCREEN -->
+<div id="bootScreen">
+<div class="boot-text" id="bootText">
+Initializing PAMI Core...
+</div>
+<div class="progress-bar">
+<div class="progress" id="progress"></div>
+</div>
 </div>
 
-<div class="modules">
-
-    <!-- ============================= -->
-    <!-- NEUROVISTA MODULE -->
-    <!-- PASTE GOOGLE APPS SCRIPT URL BELOW -->
-    <!-- ============================= -->
-    <div class="card neuro">
-        <h2>NeuroVista</h2>
-        <p>AI Business Intelligence System</p>
-        <a href="PASTE_NEUROVISTA_URL_HERE" target="_blank" class="launch-btn">Launch Module</a>
-    </div>
-
-    <!-- ============================= -->
-    <!-- QUANTUM CORE MODULE -->
-    <!-- PASTE GOOGLE APPS SCRIPT URL BELOW -->
-    <!-- ============================= -->
-    <div class="card quantum">
-        <h2>Quantum Core</h2>
-        <p>Enterprise Statistical Engine</p>
-        <a href="PASTE_QUANTUM_CORE_URL_HERE" target="_blank" class="launch-btn">Launch Module</a>
-    </div>
-
-    <!-- ============================= -->
-    <!-- DATAFUSION MODULE -->
-    <!-- PASTE GOOGLE APPS SCRIPT URL BELOW -->
-    <!-- ============================= -->
-    <div class="card datafusion">
-        <h2>DataFusion</h2>
-        <p>Automated Report & Dashboard Generator</p>
-        <a href="PASTE_DATAFUSION_URL_HERE" target="_blank" class="launch-btn">Launch Module</a>
-    </div>
-
-    <!-- ============================= -->
-    <!-- QR NEXUS MODULE -->
-    <!-- PASTE GOOGLE APPS SCRIPT URL BELOW -->
-    <!-- ============================= -->
-    <div class="card qr">
-        <h2>QR Nexus</h2>
-        <p>Dynamic QR Utility System</p>
-        <a href="PASTE_QR_URL_HERE" target="_blank" class="launch-btn">Launch Module</a>
-    </div>
-
-    <!-- ============================= -->
-    <!-- VOIDCLEAN MODULE -->
-    <!-- PASTE GOOGLE APPS SCRIPT URL BELOW -->
-    <!-- ============================= -->
-    <div class="card void">
-        <h2>VoidClean</h2>
-        <p>Data Refinement Engine</p>
-        <a href="PASTE_VOIDCLEAN_URL_HERE" target="_blank" class="launch-btn">Launch Module</a>
-    </div>
-
+<!-- HERO -->
+<section class="hero" id="hero">
+<h1>MIEAI <span>NEXUS</span></h1>
+<div class="status">
+System Status: Online<br>
+Modules: Active<br>
+Access: Public • Free • Unlimited
 </div>
+</section>
+
+<!-- MODULES -->
+<section class="modules" id="modules">
+
+<div class="card neuro">
+<h3>NeuroVista</h3>
+<p>AI Business Intelligence System</p>
+<!-- PASTE GOOGLE SCRIPT LINK BELOW -->
+<button class="btn" onclick="window.open('PASTE_LINK_HERE')">
+Launch Module
+</button>
+</div>
+
+<div class="card quantum">
+<h3>Quantum Core</h3>
+<p>Enterprise Statistical Engine</p>
+<button class="btn" onclick="window.open('PASTE_LINK_HERE')">
+Launch Module
+</button>
+</div>
+
+<div class="card datafusion">
+<h3>DataFusion</h3>
+<p>Report & Dashboard Generator</p>
+<button class="btn" onclick="window.open('PASTE_LINK_HERE')">
+Launch Module
+</button>
+</div>
+
+<div class="card qr">
+<h3>QR Nexus</h3>
+<p>Dynamic QR Utility System</p>
+<button class="btn" onclick="window.open('PASTE_LINK_HERE')">
+Launch Module
+</button>
+</div>
+
+<div class="card void">
+<h3>VoidClean</h3>
+<p>Data Refinement Engine</p>
+<button class="btn" onclick="window.open('PASTE_LINK_HERE')">
+Launch Module
+</button>
+</div>
+
+</section>
 
 <footer>
 PAMI Core Intelligence • MIEAI Nexus • 2026
 </footer>
+
+<script>
+const progress = document.getElementById("progress");
+const bootScreen = document.getElementById("bootScreen");
+const hero = document.getElementById("hero");
+const modules = document.getElementById("modules");
+const bootText = document.getElementById("bootText");
+
+const messages = [
+"Initializing PAMI Core...",
+"Booting Intelligence Grid...",
+"Establishing Neural Interface...",
+"Finalizing System State..."
+];
+
+let msgIndex = 0;
+
+function changeText(){
+bootText.innerText = messages[msgIndex];
+msgIndex++;
+if(msgIndex < messages.length){
+setTimeout(changeText,700);
+}
+}
+
+setTimeout(changeText,700);
+
+setTimeout(()=>{
+progress.style.width = "100%";
+},200);
+
+setTimeout(()=>{
+bootScreen.classList.add("hidden");
+hero.classList.add("show");
+modules.classList.add("show");
+},3500);
+
+</script>
 
 </body>
 </html>

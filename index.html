@@ -3,95 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MIEAI Nexus | PAMI Core Intelligence</title>
+<title>MIEAI Nexus | Experimental Data Systems</title>
 
 <style>
+
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family: 'Segoe UI', sans-serif;
+font-family:Segoe UI, sans-serif;
 }
 
 body{
-background:#070b14;
+background:#060912;
 color:white;
 overflow-x:hidden;
 }
 
-/* ================= BOOT SCREEN ================= */
-
-#bootScreen{
-position:fixed;
-inset:0;
-background:#04060d;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-z-index:9999;
-}
-
-.boot-text{
-font-size:14px;
-opacity:0.7;
-letter-spacing:1px;
-margin-bottom:20px;
-}
-
-.progress-bar{
-width:240px;
-height:3px;
-background:#111;
-overflow:hidden;
-border-radius:3px;
-}
-
-.progress{
-height:100%;
-width:0%;
-background:linear-gradient(90deg,#00f0ff,#7a5cff);
-transition:width 3s linear;
-}
-
-.hidden{
-opacity:0;
-visibility:hidden;
-transition:1s ease;
-}
-
-/* ================= HERO ================= */
-
-.hero{
-text-align:center;
-padding-top:120px;
-opacity:0;
-transform:translateY(20px);
-transition:1s ease;
-}
-
-.hero.show{
-opacity:1;
-transform:translateY(0);
-}
-
-.hero h1{
-font-size:48px;
-letter-spacing:2px;
-}
-
-.hero span{
-color:#00f0ff;
-}
-
-.status{
-margin-top:20px;
-font-size:14px;
-opacity:0.6;
-line-height:24px;
-}
-
-/* ================= GRID BACKGROUND ================= */
+/* GRID BACKGROUND */
 
 body::before{
 content:"";
@@ -104,24 +33,162 @@ background-size:40px 40px;
 z-index:-2;
 }
 
-/* ================= MODULES ================= */
+/* CURSOR GLOW */
 
-.modules{
-display:flex;
-justify-content:center;
-flex-wrap:wrap;
-gap:30px;
-margin:100px auto;
-max-width:1300px;
-opacity:0;
-transform:translateY(40px);
-transition:1s ease;
+.cursor-glow{
+position:fixed;
+width:400px;
+height:400px;
+background:radial-gradient(circle,#00f0ff22,transparent 60%);
+pointer-events:none;
+transform:translate(-50%,-50%);
+z-index:-1;
 }
 
-.modules.show{
+/* BOOT SCREEN */
+
+#boot{
+position:fixed;
+inset:0;
+background:#03040a;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+z-index:9999;
+}
+
+.boot-text{
+opacity:.7;
+font-size:14px;
+margin-bottom:20px;
+}
+
+.bar{
+width:220px;
+height:3px;
+background:#111;
+border-radius:4px;
+overflow:hidden;
+}
+
+.progress{
+width:0%;
+height:100%;
+background:linear-gradient(90deg,#00f0ff,#7a5cff);
+transition:3s linear;
+}
+
+.hidden{
+opacity:0;
+visibility:hidden;
+transition:1s;
+}
+
+/* HERO */
+
+.hero{
+text-align:center;
+padding-top:120px;
+opacity:0;
+transform:translateY(20px);
+transition:1s;
+}
+
+.hero.show{
 opacity:1;
 transform:translateY(0);
 }
+
+.hero h1{
+font-size:48px;
+letter-spacing:2px;
+margin-top:15px;
+}
+
+.brand{
+margin-top:10px;
+opacity:.7;
+font-size:14px;
+}
+
+/* NEURAL LOGO */
+
+.neural-logo{
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:6px;
+margin-bottom:10px;
+}
+
+.nodes{
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.node{
+width:8px;
+height:8px;
+background:#00f0ff;
+border-radius:50%;
+box-shadow:0 0 6px #00f0ff;
+}
+
+.line{
+width:22px;
+height:1px;
+background:#00f0ff;
+opacity:.7;
+}
+
+/* METRICS */
+
+.metrics{
+margin-top:60px;
+display:flex;
+justify-content:center;
+gap:60px;
+font-size:14px;
+opacity:.8;
+}
+
+.metric{
+text-align:center;
+}
+
+.metric-number{
+font-size:28px;
+margin-top:6px;
+color:#00f0ff;
+}
+
+/* MODULE SECTIONS */
+
+.section{
+margin-top:120px;
+text-align:center;
+}
+
+.section h2{
+margin-bottom:40px;
+opacity:.7;
+letter-spacing:2px;
+}
+
+/* MODULE GRID */
+
+.modules{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:30px;
+max-width:1200px;
+margin:auto;
+}
+
+/* CARD */
 
 .card{
 width:240px;
@@ -132,173 +199,250 @@ padding:25px;
 display:flex;
 flex-direction:column;
 justify-content:space-between;
-text-align:center;
-transition:0.4s ease;
-position:relative;
+transition:.4s;
 }
 
 .card:hover{
 transform:translateY(-8px);
 }
 
+.status{
+font-size:12px;
+color:#00ff9d;
+}
+
 .card h3{
-font-size:20px;
+margin-top:6px;
 }
 
 .card p{
 font-size:13px;
-opacity:0.6;
+opacity:.6;
 margin:10px 0;
 }
 
 .btn{
-padding:10px 20px;
 border:none;
+padding:10px 20px;
 border-radius:30px;
 cursor:pointer;
 font-weight:bold;
-transition:0.3s ease;
 }
 
-.btn:hover{
-transform:scale(1.05);
-}
+/* COLORS */
 
-/* Individual Colors */
+.neuro .btn{background:#00f0ff;}
+.quantum .btn{background:#ff8c00;}
+.datafusion .btn{background:#a855f7;}
+.qr .btn{background:#ff0077;}
+.void .btn{background:#00ff9d;}
 
-.neuro { box-shadow:0 0 20px #00f0ff33; }
-.neuro .btn{ background:#00f0ff; }
-
-.quantum { box-shadow:0 0 20px #ff8c0033; }
-.quantum .btn{ background:#ff8c00; }
-
-.datafusion { box-shadow:0 0 20px #a855f733; }
-.datafusion .btn{ background:#a855f7; }
-
-.qr { box-shadow:0 0 20px #ff007733; }
-.qr .btn{ background:#ff0077; }
-
-.void { box-shadow:0 0 20px #00ff9d33; }
-.void .btn{ background:#00ff9d; }
-
-/* ================= FOOTER ================= */
+/* FOOTER */
 
 footer{
+margin:120px 0 40px 0;
 text-align:center;
-opacity:0.5;
+opacity:.5;
 font-size:13px;
-margin-bottom:40px;
+}
+
+/* LAUNCH SCREEN */
+
+.launch{
+position:fixed;
+inset:0;
+background:#03040a;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:18px;
+z-index:9998;
+opacity:0;
+visibility:hidden;
+transition:.5s;
+}
+
+.launch.show{
+opacity:1;
+visibility:visible;
 }
 
 </style>
 </head>
+
 <body>
 
-<!-- BOOT SCREEN -->
-<div id="bootScreen">
-<div class="boot-text" id="bootText">
-Initializing PAMI Core...
-</div>
-<div class="progress-bar">
-<div class="progress" id="progress"></div>
-</div>
+<div class="cursor-glow" id="glow"></div>
+
+<div id="boot">
+<div class="boot-text">Initializing PAMI Core...</div>
+<div class="bar"><div class="progress" id="progress"></div></div>
 </div>
 
-<!-- HERO -->
 <section class="hero" id="hero">
-<h1>MIEAI <span>NEXUS</span></h1>
-<div class="status">
-System Status: Online<br>
-Modules: Active<br>
-Access: Public • Free • Unlimited
+
+<!-- NEURAL LOGO -->
+<div class="neural-logo">
+
+<div class="nodes">
+<div class="node"></div>
+<div class="line"></div>
+<div class="node"></div>
+<div class="line"></div>
+<div class="node"></div>
+</div>
+
+</div>
+
+<h1>MIEAI NEXUS</h1>
+
+<div class="brand">
+mieai.my<br>
+Experimental Data Systems
+</div>
+
+<div class="metrics">
+
+<div class="metric">
+Modules
+<div class="metric-number" data-target="5">0</div>
+</div>
+
+<div class="metric">
+Pipelines
+<div class="metric-number" data-target="14">0</div>
+</div>
+
+<div class="metric">
+AI Processes
+<div class="metric-number" data-target="27">0</div>
+</div>
+
+<div class="metric">
+Status
+<div class="metric-number">Stable</div>
+</div>
+
 </div>
 </section>
 
-<!-- MODULES -->
-<section class="modules" id="modules">
+<section class="section">
+<h2>CORE SYSTEMS</h2>
+
+<div class="modules">
 
 <div class="card neuro">
+<div class="status">● ONLINE</div>
 <h3>NeuroVista</h3>
-<p>AI Business Intelligence System</p>
-<!-- PASTE GOOGLE SCRIPT LINK BELOW -->
-<button class="btn" onclick="window.open('PASTE_LINK_HERE')">
-Launch Module
-</button>
+<p>Enterprise Analytics Engine</p>
+<button class="btn" onclick="launch('PASTE_LINK')">Launch</button>
 </div>
 
 <div class="card quantum">
+<div class="status">● ONLINE</div>
 <h3>Quantum Core</h3>
-<p>Enterprise Statistical Engine</p>
-<button class="btn" onclick="window.open('PASTE_LINK_HERE')">
-Launch Module
-</button>
+<p>Advanced Statistical Computing</p>
+<button class="btn" onclick="launch('PASTE_LINK')">Launch</button>
 </div>
 
 <div class="card datafusion">
+<div class="status">● ONLINE</div>
 <h3>DataFusion</h3>
 <p>Report & Dashboard Generator</p>
-<button class="btn" onclick="window.open('PASTE_LINK_HERE')">
-Launch Module
-</button>
+<button class="btn" onclick="launch('PASTE_LINK')">Launch</button>
 </div>
 
+</div>
+</section>
+
+<section class="section">
+<h2>UTILITIES</h2>
+
+<div class="modules">
+
 <div class="card qr">
+<div class="status">● ONLINE</div>
 <h3>QR Nexus</h3>
-<p>Dynamic QR Utility System</p>
-<button class="btn" onclick="window.open('PASTE_LINK_HERE')">
-Launch Module
-</button>
+<p>Dynamic QR Generator</p>
+<button class="btn" onclick="launch('PASTE_LINK')">Launch</button>
 </div>
 
 <div class="card void">
+<div class="status">● ONLINE</div>
 <h3>VoidClean</h3>
-<p>Data Refinement Engine</p>
-<button class="btn" onclick="window.open('PASTE_LINK_HERE')">
-Launch Module
-</button>
+<p>Data Cleaning Engine</p>
+<button class="btn" onclick="launch('PASTE_LINK')">Launch</button>
 </div>
 
+</div>
 </section>
 
 <footer>
-PAMI Core Intelligence • MIEAI Nexus • 2026
+PAMI Core Intelligence<br>
+MIEAI Nexus • 2026
 </footer>
 
+<div class="launch" id="launchScreen">
+Launching module...
+</div>
+
 <script>
-const progress = document.getElementById("progress");
-const bootScreen = document.getElementById("bootScreen");
-const hero = document.getElementById("hero");
-const modules = document.getElementById("modules");
-const bootText = document.getElementById("bootText");
 
-const messages = [
-"Initializing PAMI Core...",
-"Booting Intelligence Grid...",
-"Establishing Neural Interface...",
-"Finalizing System State..."
-];
-
-let msgIndex = 0;
-
-function changeText(){
-bootText.innerText = messages[msgIndex];
-msgIndex++;
-if(msgIndex < messages.length){
-setTimeout(changeText,700);
-}
-}
-
-setTimeout(changeText,700);
+/* BOOT */
 
 setTimeout(()=>{
-progress.style.width = "100%";
-},200);
+document.getElementById("progress").style.width="100%"
+},200)
 
 setTimeout(()=>{
-bootScreen.classList.add("hidden");
-hero.classList.add("show");
-modules.classList.add("show");
-},3500);
+document.getElementById("boot").classList.add("hidden")
+document.getElementById("hero").classList.add("show")
+startCounters()
+},3500)
+
+/* METRIC COUNTER */
+
+function startCounters(){
+document.querySelectorAll(".metric-number").forEach(el=>{
+let target=el.dataset.target
+if(!target) return
+
+let count=0
+
+let interval=setInterval(()=>{
+count++
+el.innerText=count
+
+if(count>=target) clearInterval(interval)
+
+},40)
+
+})
+}
+
+/* CURSOR GLOW */
+
+const glow=document.getElementById("glow")
+
+document.addEventListener("mousemove",e=>{
+glow.style.left=e.clientX+"px"
+glow.style.top=e.clientY+"px"
+})
+
+/* MODULE LAUNCH */
+
+function launch(link){
+
+const screen=document.getElementById("launchScreen")
+
+screen.classList.add("show")
+
+setTimeout(()=>{
+window.open(link)
+screen.classList.remove("show")
+},900)
+
+}
 
 </script>
 

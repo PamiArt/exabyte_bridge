@@ -1,446 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MIEAI Nexus | Experimental Data Systems.</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIEAI | The Future is Loading</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700&family=Space+Grotesk:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow: hidden;
+        }
 
-<!-- Import font futuristik dari Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-  
-<style>
+        /* Convert logo to pure white */
+        .logo-white {
+            filter: brightness(0) invert(1);
+            max-width: 320px;
+            height: auto;
+            transition: transform 0.5s ease;
+        }
+        
+        .logo-white:hover {
+            transform: scale(1.02);
+        }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Orbitron, sans-serif;
-}
+        .fade-up {
+            animation: fadeUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
 
-body{
-background:#060912;
-color:white;
-overflow-x:hidden;
-}
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-/* GRID BACKGROUND */
+        .shimmer-text {
+            background: linear-gradient(90deg, #ffffff 0%, #444444 50%, #ffffff 100%);
+            background-size: 200% auto;
+            color: #000;
+            background-clip: text;
+            text-fill-color: transparent;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 4s linear infinite;
+        }
 
-body::before{
-content:"";
-position:fixed;
-inset:0;
-background-image:
-linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-background-size:40px 40px;
-z-index:-2;
-}
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
 
-/* CURSOR GLOW */
+        .glass-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
 
-.cursor-glow{
-position:fixed;
-width:400px;
-height:400px;
-background:radial-gradient(circle,#00f0ff22,transparent 60%);
-pointer-events:none;
-transform:translate(-50%,-50%);
-z-index:-1;
-}
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+            box-shadow: 0 0 10px #ffffff;
+            animation: pulse 2s infinite;
+        }
 
-/* BOOT SCREEN */
-
-#boot{
-position:fixed;
-inset:0;
-background:#03040a;
-display:flex;
-align-items:center;
-justify-content:center;
-flex-direction:column;
-z-index:9999;
-}
-
-.boot-text{
-opacity:.7;
-font-size:14px;
-margin-bottom:20px;
-}
-
-.bar{
-width:220px;
-height:3px;
-background:#111;
-border-radius:4px;
-overflow:hidden;
-}
-
-.progress{
-width:0%;
-height:100%;
-background:linear-gradient(90deg,#00f0ff,#7a5cff);
-transition:3s linear;
-}
-
-.hidden{
-opacity:0;
-visibility:hidden;
-transition:1s;
-}
-
-/* HERO */
-
-.hero{
-text-align:center;
-padding-top:80px;
-opacity:0;
-transform:translateY(20px);
-transition:1s;
-}
-
-.hero.show{
-opacity:1;
-transform:translateY(0);
-}
-
-.hero h1{
-font-size:48px;
-letter-spacing:2px;
-margin-top:15px;
-}
-
-.brand{
-margin-top:10px;
-opacity:.7;
-font-size:14px;
-}
-
-/* NEURAL LOGO */
-
-.neural-logo{
-display:flex;
-flex-direction:column;
-align-items:center;
-gap:6px;
-margin-bottom:10px;
-}
-
-.nodes{
-display:flex;
-align-items:center;
-gap:8px;
-}
-
-.node{
-width:8px;
-height:8px;
-background:#00f0ff;
-border-radius:50%;
-box-shadow:0 0 6px #00f0ff;
-}
-
-.line{
-width:22px;
-height:1px;
-background:#00f0ff;
-opacity:.7;
-}
-
-/* METRICS */
-
-.metrics{
-margin-top:60px;
-display:flex;
-justify-content:center;
-gap:60px;
-font-size:14px;
-opacity:.8;
-}
-
-.metric{
-text-align:center;
-}
-
-.metric-number{
-font-size:28px;
-margin-top:6px;
-color:#00f0ff;
-}
-
-/* MODULE SECTIONS */
-
-.section{
-margin-top:120px;
-text-align:center;
-}
-
-.section h2{
-margin-bottom:40px;
-opacity:.7;
-letter-spacing:2px;
-}
-
-/* MODULE GRID */
-
-.modules{
-display:flex;
-justify-content:center;
-gap:30px;
-max-width:1400px;
-margin:auto;
-flex-wrap:nowrap;
-}
-
-/* CARD */
-
-.card{
-width:210px;
-height:210px;
-background:#0b0f1c;
-border-radius:20px;
-padding:25px;
-display:flex;
-flex-direction:column;
-justify-content:space-between;
-transition:.4s;
-}
-
-.card:hover{
-transform:translateY(-8px);
-}
-
-.status{
-font-size:12px;
-color:#00ff9d;
-}
-
-.card h3{
-margin-top:6px;
-}
-
-.card p{
-font-size:13px;
-opacity:.6;
-margin:10px 0;
-}
-
-.btn{
-border:none;
-padding:10px 20px;
-border-radius:30px;
-cursor:pointer;
-font-weight:bold;
-}
-
-/* COLORS */
-
-.neuro .btn{background:#00f0ff;}
-.quantum .btn{background:#ff8c00;}
-.datafusion .btn{background:#a855f7;}
-.qr .btn{background:#ff0077;}
-.void .btn{background:#00ff9d;}
-
-/* FOOTER */
-
-footer{
-margin:120px 0 40px 0;
-text-align:center;
-opacity:.5;
-font-size:13px;
-}
-
-/* LAUNCH SCREEN */
-
-.launch{
-position:fixed;
-inset:0;
-background:#03040a;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:18px;
-z-index:9998;
-opacity:0;
-visibility:hidden;
-transition:.5s;
-}
-
-.launch.show{
-opacity:1;
-visibility:visible;
-}
-
-</style>
+        @keyframes pulse {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(1.2); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+    </style>
 </head>
+<body class="flex items-center justify-center min-h-screen p-6">
 
-<body>
+    <!-- Subtle Background Glow -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] bg-white/5 rounded-full blur-[120px]"></div>
+        <div class="absolute -bottom-[20%] -right-[10%] w-[50%] h-[50%] bg-white/5 rounded-full blur-[120px]"></div>
+    </div>
 
-<div class="cursor-glow" id="glow"></div>
+    <main class="relative z-10 text-center max-w-3xl">
+        <!-- Status Indicator -->
+        <div class="mb-8 fade-up" style="animation-delay: 0.1s">
+            <span class="inline-flex items-center px-4 py-1 rounded-full border border-white/20 text-[10px] tracking-[0.2em] uppercase text-gray-400">
+                <span class="status-dot"></span> System Finalizing
+            </span>
+        </div>
 
-<div id="boot">
-<div class="boot-text">Initializing PAMI Core...</div>
-<div class="bar"><div class="progress" id="progress"></div></div>
-</div>
+        <!-- Logo Container -->
+        <div class="mb-14 flex justify-center fade-up" style="animation-delay: 0.3s">
+            <img src="523340.jpg" alt="MIEAI" class="logo-white">
+        </div>
 
-<section class="hero" id="hero">
+        <!-- Main Teaser -->
+        <div class="fade-up" style="animation-delay: 0.5s">
+            <h1 class="text-5xl md:text-7xl font-bold mb-8 tracking-tighter leading-tight">
+                Something bigger <br> 
+                <span class="shimmer-text">will launch to you.</span>
+            </h1>
 
-<!-- NEURAL LOGO -->
-<div class="neural-logo">
+            <p class="text-gray-500 text-lg md:text-xl mb-12 max-w-xl mx-auto font-light">
+                Redefining the boundaries of intelligence. <br class="hidden md:block">
+                Be the first to experience the next generation AI system.
+            </p>
+        </div>
 
-<div class="nodes">
-<div class="node"></div>
-<div class="line"></div>
-<div class="node"></div>
-<div class="line"></div>
-<div class="node"></div>
-</div>
-</div>
+        <!-- Early Access CTA -->
+        <div class="max-w-md mx-auto fade-up" style="animation-delay: 0.7s">
+            <div class="flex flex-col sm:flex-row gap-3 p-1 rounded-xl glass-input">
+                <input type="email" placeholder="Enter your email address" 
+                    class="flex-1 bg-transparent px-5 py-4 text-white focus:outline-none transition-all placeholder:text-gray-600">
+                <button class="bg-white text-black font-semibold px-8 py-4 rounded-lg hover:bg-gray-200 transition-all active:scale-95 text-sm">
+                    Get Early Access
+                </button>
+            </div>
+            <p class="text-[10px] text-gray-600 mt-6 uppercase tracking-[0.3em]">Stay tuned for the unveiling</p>
+        </div>
+    </main>
 
-<h1>MIEAI NEXUS</h1>
+    <!-- Footer -->
+    <footer class="absolute bottom-10 left-0 w-full text-center fade-up" style="animation-delay: 0.9s">
+        <p class="text-gray-700 text-xs tracking-widest font-light">&copy; 2024 MIEAI &mdash; PRECISION INTELLIGENCE</p>
+    </footer>
 
-<div class="brand">
-P.A.M.I.E.L.Y.T.I.C.S<br>
-Your AI Platform for Analyzing and Visualizing Your Imagination
-</div>
+    <script>
+        // Simple Interaction
+        const button = document.querySelector('button');
+        const input = document.querySelector('input');
 
-<div class="metrics">
-
-<div class="metric">
-Modules
-<div class="metric-number" data-target="5">0</div>
-</div>
-
-<div class="metric">
-Pipelines
-<div class="metric-number" data-target="14">0</div>
-</div>
-
-<div class="metric">
-AI Processes
-<div class="metric-number" data-target="27">0</div>
-</div>
-
-<div class="metric">
-Status
-<div class="metric-number">Stable</div>
-</div>
-
-</div>
-</section>
-
-<section class="section">
-
-<h2>PAMIELYTICS MODULES</h2>
-
-<div class="modules">
-
-<div class="card neuro">
-<div class="status">● ONLINE</div>
-<h3>NeuroVista</h3>
-<p>Enterprise Analytics Engine</p>
-<button class="btn" onclick="launch('https://script.google.com/macros/s/AKfycbyPO3RPq14fPL6L7edLAMacc3zgotGtfd4aZqW80p0zvhpdvqbjCRec7s7q5g8CN3cpCQ/exec')">Launch</button>
-</div>
-
-<div class="card quantum">
-<div class="status">● ONLINE</div>
-<h3>Quantum Core</h3>
-<p>Advanced Statistical Computing</p>
-<button class="btn" onclick="launch('PASTE_LINK')">Launch</button>
-</div>
-
-<div class="card datafusion">
-<div class="status">● ONLINE</div>
-<h3>DataFusion</h3>
-<p>Report & Dashboard Generator</p>
-<button class="btn" onclick="launch('https://script.google.com/macros/s/AKfycbwechS027u0SrlWiKGegih2BdYzOLxeg7euGTRJCGTpFQuz9bz2gs8IZLoLYCdUVMCD/exec')">Launch</button>
-</div>
-
-<div class="card qr">
-<div class="status">● ONLINE</div>
-<h3>NexusScrapper</h3>
-<p>WebScrapper</p>
-<button class="btn" onclick="launch('https://script.google.com/macros/s/AKfycbwLJzBDMEXv2b9K_bULkVvG5pFi42gxwWEA0g7btL20lsA_HRBzuN120DP2DMZZr7g-NA/exec')">Launch</button>
-</div>
-
-<div class="card void">
-<div class="status">● ONLINE</div>
-<h3>VoidClean</h3>
-<p>Data Cleaning Engine</p>
-<button class="btn" onclick="launch('https://script.google.com/macros/s/AKfycbzRT623kukHbs9MaAHqVYJfagKauX6iO60Jyn6Q5Dz59xEnWnVzzlB5tjeD7U4eEsOV/exec')">Launch</button>
-</div>
-
-</div>
-</section>
-
-<footer>
-PAMI Core Intelligence<br>
-MIEAI Nexus • 2026<br>
-MIEAI Nexus does not store user data. All uploaded datasets are processed temporarily and automatically discarded after analysis
-</footer>
-
-<div class="launch" id="launchScreen">
-P.A.M.I Launching...
-</div>
-
-<script>
-
-/* BOOT */
-
-setTimeout(()=>{
-document.getElementById("progress").style.width="100%"
-},200)
-
-setTimeout(()=>{
-document.getElementById("boot").classList.add("hidden")
-document.getElementById("hero").classList.add("show")
-startCounters()
-},3500)
-
-/* METRIC COUNTER */
-
-function startCounters(){
-document.querySelectorAll(".metric-number").forEach(el=>{
-let target=el.dataset.target
-if(!target) return
-
-let count=0
-
-let interval=setInterval(()=>{
-count++
-el.innerText=count
-
-if(count>=target) clearInterval(interval)
-
-},40)
-
-})
-}
-
-/* CURSOR GLOW */
-
-const glow=document.getElementById("glow")
-
-document.addEventListener("mousemove",e=>{
-glow.style.left=e.clientX+"px"
-glow.style.top=e.clientY+"px"
-})
-
-/* MODULE LAUNCH */
-
-function launch(link){
-
-const screen=document.getElementById("launchScreen")
-
-screen.classList.add("show")
-
-setTimeout(()=>{
-window.open(link)
-screen.classList.remove("show")
-},900)
-
-}
-
-</script>
-
+        button.addEventListener('click', () => {
+            if (input.value.includes('@')) {
+                button.innerText = 'Invited';
+                button.classList.remove('bg-white');
+                button.classList.add('bg-gray-800', 'text-white');
+                input.value = '';
+                input.placeholder = 'We will reach out soon.';
+            } else {
+                input.classList.add('border-red-500');
+                setTimeout(() => input.classList.remove('border-red-500'), 2000);
+            }
+        });
+    </script>
 </body>
 </html>
+

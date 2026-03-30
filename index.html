@@ -3,147 +3,225 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIEAI | The Future is Loading</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700&family=Space+Grotesk:wght@300;600&display=swap" rel="stylesheet">
+    <title>MIEAI - National Intelligence</title>
+    <!-- Import Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;800&display=swap" rel="stylesheet">
+    
     <style>
-        body {
-            background-color: #000000;
-            color: #ffffff;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            overflow: hidden;
+        :root {
+            --bg-color: #000000;
+            --text-color: #FFFFFF;
+            
+            /* ==========================================
+               NOTA: TEMPAT KECIK OR BESARKAN LOGO KAU 
+               Ubah nilai px kat bawah ni (Contoh: 400px)
+               ========================================== */
+            --logo-size: 600px; 
         }
 
-        /* Convert logo to pure white */
-        .logo-white {
-            filter: brightness(0) invert(1);
-            max-width: 320px;
-            height: auto;
-            transition: transform 0.5s ease;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        
-        .logo-white:hover {
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow: hidden; /* Elak scrollbar muncul masa morphing */
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Effect Bintang Halus */
+        .stars-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top, #0a0a0a 0%, #000000 100%);
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0;
+            animation: twinkle var(--duration) infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 0.7; transform: scale(1.2); }
+        }
+
+        /* Logo Section */
+        .logo-container {
+            margin-bottom: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main-logo {
+            width: var(--logo-size);
+            height: auto;
+            display: block;
+            /* Filter ni nak bagi logo nampak blend sikit dengan dark mode */
+            filter: drop-shadow(0 0 20px rgba(255,255,255,0.05));
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .main-logo:hover {
             transform: scale(1.02);
         }
 
-        .fade-up {
-            animation: fadeUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        /* Product Section */
+        .product-line {
+            display: flex;
+            gap: 60px;
+            justify-content: center;
+            align-items: flex-start; /* Aling top supaya text expand ke bawah */
+            width: 100%;
+            max-width: 1400px;
+            padding: 0 40px;
         }
 
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
+        .product-item {
+            position: relative;
+            cursor: pointer;
+            text-align: center;
+            flex: 1; /* Agihkan ruang sama rata */
+            max-width: 350px;
         }
 
-        .shimmer-text {
-            background: linear-gradient(90deg, #ffffff 0%, #444444 50%, #ffffff 100%);
-            background-size: 200% auto;
-            color: #000;
-            background-clip: text;
-            text-fill-color: transparent;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 4s linear infinite;
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0); /* Hidden line */
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        @keyframes shine {
-            to { background-position: 200% center; }
+        .product-detail {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            font-size: 0.85rem;
+            font-weight: 200;
+            color: #999999;
+            margin-top: 0;
+            line-height: 1.8;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            text-align: center;
         }
 
-        .glass-input {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+        /* Morphing Effect on Hover */
+        .product-item:hover .product-name {
+            color: #ffffff;
+            letter-spacing: 0.3em;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
         }
 
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #ffffff;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 8px;
-            box-shadow: 0 0 10px #ffffff;
-            animation: pulse 2s infinite;
+        .product-item:hover .product-detail {
+            max-height: 200px; /* Bagi cukup ruang untuk text */
+            opacity: 1;
+            margin-top: 20px;
         }
 
-        @keyframes pulse {
-            0% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.3; transform: scale(1.2); }
-            100% { opacity: 1; transform: scale(1); }
+        /* Mobile Optimization */
+        @media (max-width: 900px) {
+            body {
+                overflow-y: auto;
+                padding: 40px 0;
+            }
+            .product-line {
+                flex-direction: column;
+                align-items: center;
+                gap: 40px;
+            }
+            :root {
+                --logo-size: 80vw;
+            }
+            .product-detail {
+                max-width: 280px;
+            }
         }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen p-6">
+<body>
 
-    <!-- Subtle Background Glow -->
-    <div class="absolute inset-0 overflow-hidden pointer-events-none">
-        <div class="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] bg-white/5 rounded-full blur-[120px]"></div>
-        <div class="absolute -bottom-[20%] -right-[10%] w-[50%] h-[50%] bg-white/5 rounded-full blur-[120px]"></div>
+    <!-- Latar belakang bintang bintik -->
+    <div class="stars-container" id="stars"></div>
+
+    <div class="logo-container">
+        <!-- ==========================================
+             NOTA: PASTE URL GAMBAR/LOGO KAU KAT BAWAH NI 
+             ========================================== -->
+        <img src="PASTE_URL_GAMBAR_KAU" alt="MIEAI LOGO" class="main-logo">
     </div>
 
-    <main class="relative z-10 text-center max-w-3xl">
-        <!-- Status Indicator -->
-        <div class="mb-8 fade-up" style="animation-delay: 0.1s">
-            <span class="inline-flex items-center px-4 py-1 rounded-full border border-white/20 text-[10px] tracking-[0.2em] uppercase text-gray-400">
-                <span class="status-dot"></span> System Finalizing
-            </span>
-        </div>
-
-        <!-- Logo Container -->
-        <div class="mb-14 flex justify-center fade-up" style="animation-delay: 0.3s">
-            <img src="523340.jpg" alt="MIEAI" class="logo-white">
-        </div>
-
-        <!-- Main Teaser -->
-        <div class="fade-up" style="animation-delay: 0.5s">
-            <h1 class="text-5xl md:text-7xl font-bold mb-8 tracking-tighter leading-tight">
-                Something bigger <br> 
-                <span class="shimmer-text">will launch to you.</span>
-            </h1>
-
-            <p class="text-gray-500 text-lg md:text-xl mb-12 max-w-xl mx-auto font-light">
-                Redefining the boundaries of intelligence. <br class="hidden md:block">
-                Be the first to experience the next generation AI system.
-            </p>
-        </div>
-
-        <!-- Early Access CTA -->
-        <div class="max-w-md mx-auto fade-up" style="animation-delay: 0.7s">
-            <div class="flex flex-col sm:flex-row gap-3 p-1 rounded-xl glass-input">
-                <input type="email" placeholder="Enter your email address" 
-                    class="flex-1 bg-transparent px-5 py-4 text-white focus:outline-none transition-all placeholder:text-gray-600">
-                <button class="bg-white text-black font-semibold px-8 py-4 rounded-lg hover:bg-gray-200 transition-all active:scale-95 text-sm">
-                    Get Early Access
-                </button>
+    <div class="product-line">
+        <!-- Produk 1 -->
+        <div class="product-item">
+            <div class="product-name">National Brain</div>
+            <div class="product-detail">
+                12-Synapse Neural Architecture: Unifying global intelligence to architect a superior socioeconomic and educational powerhouse for a new era.
             </div>
-            <p class="text-[10px] text-gray-600 mt-6 uppercase tracking-[0.3em]">Stay tuned for the unveiling</p>
         </div>
-    </main>
 
-    <!-- Footer -->
-    <footer class="absolute bottom-10 left-0 w-full text-center fade-up" style="animation-delay: 0.9s">
-        <p class="text-gray-700 text-xs tracking-widest font-light">&copy; 2024 MIEAI &mdash; PRECISION INTELLIGENCE</p>
-    </footer>
+        <!-- Produk 2 -->
+        <div class="product-item">
+            <div class="product-name">EduHub</div>
+            <div class="product-detail">
+                The Nexus of Discovery: Empowering researchers and students with high-speed project acceleration, collaborative synthesis, and academic excellence.
+            </div>
+        </div>
+
+        <!-- Produk 3 -->
+        <div class="product-item">
+            <div class="product-name">Statistics Tool</div>
+            <div class="product-detail">
+                Precision Analytics: Advanced Python-driven suite for high-fidelity data simulation, predictive modeling, and multidimensional structural analysis.
+            </div>
+        </div>
+    </div>
 
     <script>
-        // Simple Interaction
-        const button = document.querySelector('button');
-        const input = document.querySelector('input');
+        // Script untuk generate bintik bintang secara random
+        const starsContainer = document.getElementById('stars');
+        const starCount = 150; // Tambah sikit lagi bintang biar nampak mewah
 
-        button.addEventListener('click', () => {
-            if (input.value.includes('@')) {
-                button.innerText = 'Invited';
-                button.classList.remove('bg-white');
-                button.classList.add('bg-gray-800', 'text-white');
-                input.value = '';
-                input.placeholder = 'We will reach out soon.';
-            } else {
-                input.classList.add('border-red-500');
-                setTimeout(() => input.classList.remove('border-red-500'), 2000);
-            }
-        });
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = (Math.random() * 1.5 + 0.5) + 'px';
+            star.style.width = size;
+            star.style.height = size;
+            
+            // Fokuskan bintang di bahagian atas 70% skrin
+            star.style.top = Math.random() * 70 + '%';
+            star.style.left = Math.random() * 100 + '%';
+            
+            // Random duration untuk kelipan
+            star.style.setProperty('--duration', Math.random() * 3 + 3 + 's');
+            // Delay random supaya tak berkelip serentak
+            star.style.animationDelay = Math.random() * 5 + 's';
+            
+            starsContainer.appendChild(star);
+        }
     </script>
 </body>
 </html>
-

@@ -13,12 +13,8 @@
         :root {
             --bg-color: #000000;
             --text-color: #FFFFFF;
-            
-            /* ==========================================
-               NOTA: TEMPAT KECIK OR BESARKAN LOGO KAU 
-               Ubah nilai px kat bawah ni (Contoh: 400px)
-               ========================================== */
-            --logo-size: 800px; 
+            /* TEMPAT KECIK OR BESARKAN LOGO KAU */
+            --logo-size: 600px; 
         }
 
         * {
@@ -31,16 +27,17 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             font-family: 'Plus Jakarta Sans', sans-serif;
-            overflow: hidden; /* Elak scrollbar muncul masa morphing */
+            overflow: hidden; 
             height: 100vh;
             width: 100vw;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            position: relative;
         }
 
-        /* Effect Bintang Halus */
+        /* Effect Bintang */
         .stars-container {
             position: absolute;
             top: 0;
@@ -76,13 +73,8 @@
             width: var(--logo-size);
             height: auto;
             display: block;
-            /* Filter ni nak bagi logo nampak blend sikit dengan dark mode */
             filter: drop-shadow(0 0 20px rgba(255,255,255,0.05));
             transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .main-logo:hover {
-            transform: scale(1.02);
         }
 
         /* Product Section */
@@ -90,7 +82,7 @@
             display: flex;
             gap: 60px;
             justify-content: center;
-            align-items: flex-start; /* Aling top supaya text expand ke bawah */
+            align-items: flex-start;
             width: 100%;
             max-width: 1400px;
             padding: 0 40px;
@@ -100,7 +92,7 @@
             position: relative;
             cursor: pointer;
             text-align: center;
-            flex: 1; /* Agihkan ruang sama rata */
+            flex: 1;
             max-width: 350px;
         }
 
@@ -111,7 +103,6 @@
             text-transform: uppercase;
             white-space: nowrap;
             padding-bottom: 10px;
-            border-bottom: 1px solid rgba(255,255,255,0); /* Hidden line */
             transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -125,64 +116,83 @@
             margin-top: 0;
             line-height: 1.8;
             transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            text-align: center;
         }
 
-        /* Morphing Effect on Hover */
         .product-item:hover .product-name {
-            color: #ffffff;
             letter-spacing: 0.3em;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
         }
 
         .product-item:hover .product-detail {
-            max-height: 200px; /* Bagi cukup ruang untuk text */
+            max-height: 200px;
             opacity: 1;
             margin-top: 20px;
         }
 
-        /* Mobile Optimization */
+        /* FOOTER KEMASKINI - Jauh ke bawah, sangat halus & pudar */
+        footer {
+            position: absolute;
+            bottom: 15px; /* Lagi dekat dengan lantai skrin */
+            width: 100%;
+            text-align: center;
+            font-size: 0.55rem; /* Makin kecik */
+            font-weight: 200; 
+            letter-spacing: 3px;
+            color: #222222; /* Makin pudar (hampir blend dengan hitam) */
+            text-transform: uppercase;
+            pointer-events: none;
+        }
+
+        footer a {
+            color: #444444; /* Link pun pudar */
+            text-decoration: none;
+            transition: color 0.3s ease;
+            pointer-events: auto; 
+        }
+
+        footer a:hover {
+            color: #ffffff;
+        }
+
         @media (max-width: 900px) {
             body {
                 overflow-y: auto;
-                padding: 40px 0;
+                padding: 60px 0;
+                justify-content: center;
             }
             .product-line {
                 flex-direction: column;
                 align-items: center;
                 gap: 40px;
+                margin-bottom: 120px; /* Jarak lebih luas untuk mobile */
             }
             :root {
-                --logo-size: 80vw;
+                --logo-size: 280px; 
             }
-            .product-detail {
-                max-width: 280px;
+            footer {
+                position: relative;
+                bottom: 0;
+                margin-top: 30px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Latar belakang bintang bintik -->
     <div class="stars-container" id="stars"></div>
 
     <div class="logo-container">
-        <!-- ==========================================
-             NOTA: PASTE URL GAMBAR/LOGO KAU KAT BAWAH NI 
-             ========================================== -->
-        <img src="https://raw.githubusercontent.com/PamiArt/exabyte_bridge/refs/heads/main/assets/1773326444150.png" alt="MIEAI LOGO" class="main-logo">
+        <!-- PASTE URL GAMBAR KAU -->
+        <img src="PASTE_URL_GAMBAR_KAU" alt="MIEAI LOGO" class="main-logo">
     </div>
 
     <div class="product-line">
-        <!-- Produk 1 -->
         <div class="product-item">
             <div class="product-name">National Brain</div>
             <div class="product-detail">
-                12-Synapse Neural Architecture: Unifying global intelligence to architect a superior socioeconomic and educational powerhouse for a new era.
+                12-Synapse Neural Architecture: Unifying global intelligence to architect a superior policy decision powerhouse for a new era.
             </div>
         </div>
 
-        <!-- Produk 2 -->
         <div class="product-item">
             <div class="product-name">EduHub</div>
             <div class="product-detail">
@@ -190,7 +200,6 @@
             </div>
         </div>
 
-        <!-- Produk 3 -->
         <div class="product-item">
             <div class="product-name">Statistics Tool</div>
             <div class="product-detail">
@@ -199,33 +208,26 @@
         </div>
     </div>
 
-<footer>
+    <footer>
         MIEAI COPYRIGHT 2026 | CONTACT <a href="mailto:admin@mieai.my">MIEAI</a>
     </footer>
-    
-    <script>
-        // Script untuk generate bintik bintang secara random
-        const starsContainer = document.getElementById('stars');
-        const starCount = 150; // Tambah sikit lagi bintang biar nampak mewah
 
+    <script>
+        const starsContainer = document.getElementById('stars');
+        const starCount = 150;
         for (let i = 0; i < starCount; i++) {
             const star = document.createElement('div');
             star.className = 'star';
             const size = (Math.random() * 1.5 + 0.5) + 'px';
             star.style.width = size;
             star.style.height = size;
-            
-            // Fokuskan bintang di bahagian atas 70% skrin
-            star.style.top = Math.random() * 70 + '%';
+            star.style.top = Math.random() * 100 + '%';
             star.style.left = Math.random() * 100 + '%';
-            
-            // Random duration untuk kelipan
             star.style.setProperty('--duration', Math.random() * 3 + 3 + 's');
-            // Delay random supaya tak berkelip serentak
             star.style.animationDelay = Math.random() * 5 + 's';
-            
             starsContainer.appendChild(star);
         }
     </script>
 </body>
 </html>
+
